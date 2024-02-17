@@ -1,10 +1,14 @@
 package matheus.leao.psiassistente.patient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import matheus.leao.psiassistente.appointment.entities.Appointment;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Patient {
@@ -21,6 +25,9 @@ public class Patient {
     private String gender;
     @Column
     private Date birthDate;
+    @OneToMany(mappedBy = "pacient")
+    @JsonIgnore
+    private List<Appointment> appointments;
 
     public Patient(String cpf, String name, String gender,String email, String phone,Date birthDate){
         this.cpf = cpf;

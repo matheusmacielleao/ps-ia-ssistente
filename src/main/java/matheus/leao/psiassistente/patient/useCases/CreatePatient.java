@@ -1,6 +1,4 @@
 package matheus.leao.psiassistente.patient.useCases;
-
-
 import matheus.leao.psiassistente.patient.Patient;
 import matheus.leao.psiassistente.patient.PatientRepository;
 import org.springframework.stereotype.Component;

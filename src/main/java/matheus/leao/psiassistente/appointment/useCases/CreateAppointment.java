@@ -28,10 +28,12 @@ public class CreateAppointment {
     public Appointment execute(String cpf, Date date, String notes, List<MedsTreatment> medsTreatment) {
         Patient patientExists = patientRepository.getReferenceById(cpf);
         String processedNotes = this.processNotes(notes);
+
         Appointment appointment = new Appointment();
         appointment.setPacient(patientExists);
         appointment.setDate(date);
         appointment.setNotes(processedNotes);
+
         List<MedsTreatment> mappedMeds = new ArrayList<>();
         for(MedsTreatment meds : medsTreatment){
             MedsTreatment med = new MedsTreatment();
@@ -41,6 +43,7 @@ public class CreateAppointment {
             med.setFrequencyPerDay(meds.getFrequencyPerDay());
             mappedMeds.add(med);
         }
+
         appointment.setMedsTreatment(mappedMeds);
         appointmentRepository.save(appointment);
         return appointment;
